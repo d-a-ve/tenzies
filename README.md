@@ -1,13 +1,14 @@
-
 # Tenzies Game App
 
 A game where you roll 10 dice until all dice are the same.
 
+## Live Link
+
+[Tenzies Game](https://davetenzies.netlify.app/)
 
 ## Demo
 
-[Untitled_ Jan 5, 2023 8_59 PM.webm](https://user-images.githubusercontent.com/108290182/210872880-e170f4a4-ee51-4355-83d0-8f46b41415a6.webm)
-
+[Untitled\_ Jan 5, 2023 8_59 PM.webm](https://user-images.githubusercontent.com/108290182/210872880-e170f4a4-ee51-4355-83d0-8f46b41415a6.webm)
 
 ## Run Locally
 
@@ -35,8 +36,6 @@ Start the server
   npm run dev
 ```
 
-
 ## Tech Stack
 
 React, Typescipt
-
