@@ -10,8 +10,14 @@ export default function App() {
   // 2. track number of rolls to window
   // 3. track time it took to win a game
   // 4. save your best time to localstorage
+  const [isStarted, setIsStarted] = React.useState(false)
   const [dice, setDice] = React.useState(allNewDice());
   const [tenzies, setTenzies] = React.useState(false);
+  const [minutes, setMinutes] = React.useState(0)
+  const [seconds, setSeconds] = React.useState(0)
+  const [interv, setInterv] = React.useState<number>()
+  const [numOfRolls, setNumOfRolls] = React.useState(0)
+  const gameCounter = `${formatNumCount(minutes)}:${formatNumCount(seconds)}`
   const { width, height } = useWindowSize();
 
   React.useEffect(() => {
@@ -21,9 +27,37 @@ export default function App() {
 
     if (allIsHeld && allSameValue) {
       setTenzies(true);
+      stopCounter()
       console.log("Dice changed");
     }
   }, [dice]);
+
+  function startCounter() {
+    setInterv(setInterval(() => {
+      setSeconds(prev => prev + 1)
+    },1000))
+  }
+
+    if(seconds === 60) {
+      setMinutes(prev => prev + 1)
+      setSeconds(0)
+    }
+    
+  function stopCounter() { // clears the interval and stop the counter
+    clearInterval(interv)
+  }
+
+  function startGame() {
+    setIsStarted(true)
+    startCounter()
+  }
+
+  function formatNumCount(count:number) {
+    if(count < 10){
+      return `0${count}`
+    }
+    return count
+  }
 
   const mappedDice = dice.map((die) => {
     return (
@@ -58,6 +92,7 @@ export default function App() {
       return die.isHeld ? die : genereateNewDie();
     });
     setDice(newRollDice);
+    setNumOfRolls(prev => prev + 1)
   }
 
   function holdDice(id: string) {
@@ -75,11 +110,17 @@ export default function App() {
     return setTenzies(false), setDice(allNewDice());
   }
 
-  return (
+  return isStarted 
+  ? (
+
     <main>
       {tenzies && <Confetti width={width} height={height} />}
       <h1 className="title">Tenzies</h1>
+      <p>
+        Number of rolls: {numOfRolls}
+      </p>
       <p className="instruction">
+        {gameCounter}
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls
       </p>
@@ -88,5 +129,6 @@ export default function App() {
         {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
-  );
+  )
+  : <button onClick={startGame}>Start Game</button>
 }
