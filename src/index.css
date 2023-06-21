@@ -1,130 +1,492 @@
 :root {
-  --dark: #0b2434;
-  --light: #f5f5f5;
-  --green: #59e391;
-  --white: #ffffff;
-  --text-main: #2b283a;
-  --text-sub: #4a4e74;
-  --blue: #5035ff;
+	--dark: #0b2434;
+	--light: #f5f5f5;
+	--green: #59e391;
+	--white: #ffffff;
+	--text-main: #2b283a;
+	--text-sub: #4a4e74;
+	--blue: #5035ff;
+	--yellow: #fedc56;
+	--gold: #ffd700bc;
+	--silver: #808080bc;
+	--bronze: #cd7f32bc;
 
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Karla", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Karla", sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {
-  font-size: 1.6rem;
-  background-color: var(--dark);
-  height: 100vh;
-  padding: 3rem 2rem;
+	font-size: 1.6rem;
+	background-color: var(--dark);
+	padding: 2rem;
 }
 
 main {
-  background-color: var(--light);
-  border-radius: 10px;
-  height: calc(100vh - 6rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+	background-color: var(--light);
+	border-radius: 10px;
+	padding-inline: 4rem;
 }
 
+h1 {
+	font-size: 4rem;
+	color: var(--text-main);
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 3.2rem;
+}
+
+.hof-btn.loading::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: #fff;
+	animation: pulse 2.5s infinite;
+}
+
+.hof-btn.loading {
+	position: relative;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.home-main a:hover {
+	color: var(--blue);
+	transition: 300ms color ease-in;
+}
+
+.home-main {
+	max-width: 800px;
+	margin-inline: auto;
+}
+
+.home-main section:not(:first-of-type) {
+	margin-top: 4.8rem;
+}
+
+.home-hero {
+	width: 100%;
+	padding-top: 5.4rem;
+}
+
+.home-hero > p {
+	font-size: 2rem;
+}
+
+/* the p directly after the h1 */
+.home-hero h1 + p {
+	margin-bottom: 1.6rem;
+}
+
+.home-hero p:nth-of-type(2) {
+	margin-bottom: 2.4rem;
+}
+
+.start-btn {
+	margin-bottom: 2.4rem;
+}
+
+.video-demo {
+	width: 100%;
+	height: 350px;
+}
+
+.how-to-play-steps {
+	margin-top: 1.6rem;
+}
+
+.how-to-play-steps ol {
+	font-size: 2rem;
+	margin-left: 0;
+}
+
+.how-to-play-steps li {
+	margin-bottom: 0.8rem;
+}
+
+.how-to-play .start-btn {
+	margin-top: 2.4rem;
+}
+
+.game-main {
+	height: calc(100vh - 6rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.game-height {
+	height: 100vh;
+	padding: 3rem 2rem;
+}
+
+.opaque {
+	opacity: 0.45;
+}
+
+.link {
+	color: var(--text-main);
+}
+
+.back-btn-container {
+	position: absolute;
+	top: 10rem;
+	left: 10rem;
+}
+
+.back-btn-container svg,
+.back-btn-container p {
+	transition: 150ms transform ease;
+}
+
+.back-btn-container:hover svg {
+	transform: translateX(-3px);
+}
+
+.back-btn-container:hover p {
+	transform: translateX(3px);
+}
 .title {
-  font-weight: 700;
-  font-size: 4.5rem;
-  line-height: 5rem;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.2rem;
-  color: var(--text-main);
+	margin-bottom: 1.2rem;
 }
 
 .instruction {
-  font-family: "Inter", sans-serif;
-  line-height: 3rem;
-  text-align: center;
-  letter-spacing: -0.03em;
-  font-size: 2.3rem;
-  max-width: 500px;
-  color: var(--text-sub);
+	font-family: "Inter", sans-serif;
+	line-height: 3rem;
+	text-align: center;
+	letter-spacing: -0.03em;
+	font-size: 2.3rem;
+	max-width: 500px;
+	color: var(--text-sub);
+}
+
+.game-result-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4rem;
+	font-size: 2.8rem;
+	margin-bottom: 1.6rem;
+	font-family: "Inter", sans-serif;
+	color: var(--text-sub);
 }
 
 .die-container {
-  max-width: 400px;
-  width: 90%;
-  display: grid;
-  margin-top: 2.5rem;
-  grid-template: auto auto / repeat(5, 4rem);
-  justify-content: space-between;
-  row-gap: 4rem;
+	max-width: 400px;
+	width: 90%;
+	display: grid;
+	margin-top: 2.5rem;
+	grid-template: auto auto / repeat(5, 4rem);
+	justify-content: space-between;
+	row-gap: 4rem;
 }
 
 .white {
-  background: var(--white);
+	background: var(--white);
 }
 
 .green {
-  background: var(--green);
+	background: var(--green);
 }
 
 .die-face {
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  padding: 2rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	padding: 2rem 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 
 .die-value {
-  font-size: 3.8rem;
-  font-weight: 600;
+	font-size: 3.8rem;
+	font-weight: 600;
+}
+
+.btn {
+	background: var(--blue);
+	color: var(--white);
+	border-radius: 4px;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.18);
+	padding: 1.3rem 4rem;
+	border: none;
+	font-size: 2rem;
+	outline: none;
+	cursor: pointer;
 }
 
 .roll-btn {
-  background: var(--blue);
-  color: var(--white);
-  border-radius: 4px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.18);
-  padding: 1.3rem 4rem;
-  border: none;
-  margin-top: 4rem;
-  font-size: 2rem;
-  outline: none;
-  cursor: pointer;
+	margin-top: 4rem;
 }
 
-.roll-btn:active {
-  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+.btn:active {
+	box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: min(calc(100% - 4rem), 500px);
+	padding: 3rem 3rem 5rem;
+	z-index: 100;
+	background-color: var(--light);
+	border-radius: 4px;
+	font-size: 2rem;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+	color: var(--text-sub);
+	word-wrap: break-word;
+}
+
+.modal-stats h4 {
+	font-size: 3.2rem;
+	text-align: center;
+	margin-bottom: 1.6rem;
+}
+
+.modal-stats p {
+	font-size: 2.4rem;
+}
+
+.hof-btn {
+	padding-inline: 1.6rem;
+}
+
+.play-btn {
+	background: var(--yellow);
+	color: var(--text-main);
+	padding-inline: 1.5rem;
+}
+
+.modal-details-container p {
+	margin-top: 2rem;
+}
+.btn-container {
+	display: flex;
+	margin-top: 3.2rem;
+	gap: 1.6rem 3.2rem;
+	flex-wrap: wrap;
+}
+
+.modal-footer {
+	margin-top: 4rem;
+}
+
+.modal-footer-btn {
+	background-color: var(--text-sub);
+	text-decoration: none;
+}
+
+.modal-footer-btn svg {
+	margin-right: 0.8rem;
+}
+
+.modal-footer-link-container {
+	margin-top: 3.2rem;
+}
+
+.HOF {
+	text-align: center;
+	max-width: 600px;
+	max-height: 35rem;
+	margin: auto;
+	margin-bottom: 3.2rem;
+	overflow: auto;
+}
+
+.HOF-title {
+	color: var(--yellow);
+	font-size: 4rem;
+	margin-bottom: 2.4rem;
+}
+
+.HOF-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.HOF-row {
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+
+.HOF-table-body .HOF-row:first-of-type {
+	background-color: var(--gold);
+}
+.HOF-table-body .HOF-row:nth-of-type(2) {
+	background-color: var(--silver);
+}
+.HOF-table-body .HOF-row:nth-of-type(2) {
+	background-color: var(--bronze);
+}
+
+th,
+td {
+	padding-block: 8px;
+}
+
+.col-1 {
+	width: 6rem;
+}
+.col-2 {
+	width: 40rem;
+}
+.col-3 {
+	width: 10rem;
+}
+.col-4 {
+	width: 6rem;
+}
+
+.footer {
+	text-align: center;
+	font-size: 2rem;
+	padding-bottom: 3.2rem;
+}
+
+#error-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: min(calc(100% - 6rem), 45ch);
+	margin: auto;
+	color: var(--white);
+	-ms-flex-direction: column;
+	flex-direction: column;
+	row-gap: 2.4rem;
+}
+
+#error-page h1 {
+	color: var(--white)
+}
+
+.error-desc {
+	text-align: center;
+font-size: 2rem;
+}
+
+.error-desc p:nth-of-type(2) {
+	margin-top: 1.6rem;
 }
 
 @media all and (max-width: 460px) {
-  .title {
-    font-size: 3.5rem;
-    line-height: 5rem;
-  }
+	.game-main {
+		padding-inline: 1.2rem;
+	}
+	.back-btn-container {
+		top: 6rem;
+	}
 
-  .instruction {
-    line-height: 2.2rem;
-    font-size: 1.8rem;
-  }
+	.btn {
+		padding: 1.3rem 3rem;
+		margin-top: 3rem;
+	}
 
-  .die-face {
-    padding: 1rem 1.5rem;
-  }
+	.hof-btn,
+	.play-btn {
+		margin-top: 0;
+	}
 
-  .die-value {
-    font-size: 2.2rem;
-  }
+	.home-hero > p,
+	.how-to-play-steps ol,
+	.HOF-row,
+	.footer,
+	.btn {
+		font-size: 1.8rem;
+	}
 
-  .roll-btn {
-    padding: 1.3rem 3rem;
-    margin-top: 3rem;
-    font-size: 1.6rem;
-  }
+	.modal-stats h4 {
+		font-size: 2.4rem;
+		text-align: left;
+	}
+
+	.modal-stats p {
+		font-size: 2rem;
+	}
+}
+
+@media all and (max-width: 550px) {
+	body {
+		padding: 1rem;
+	}
+	.game-height {
+		padding: 2rem 1rem;
+	}
+	.back-btn-container {
+		left: 6rem;
+	}
+
+	.video-demo {
+		height: 100%;
+	}
+	
+	.home-hero .start-btn {
+	margin-top: 0;
+}
+
+	.title {
+		font-size: 3.5rem;
+		line-height: 5rem;
+	}
+
+	.instruction {
+		line-height: 2.2rem;
+		font-size: 1.8rem;
+	}
+
+	.HOF-title {
+		font-size: 3.2rem;
+	}
+	.game-result-container {
+		-ms-flex-direction: column;
+		flex-direction: column;
+		gap: 0;
+		font-size: 2rem;
+	}
+	.die-face {
+		padding: 1rem 1.5rem;
+	}
+
+	.die-value {
+		font-size: 2rem;
+	}
+}
+
+@media all and (max-width: 340px) {
+	.die-container {
+		grid-template: auto auto / repeat(3, 4rem);
+		row-gap: 1.6rem;
+	}
+	.die-face:last-of-type {
+		grid-column: 2 / 3;
+	}
+
+	.back-btn-container {
+		top: 3rem;
+		left: 4rem;
+	}
 }
