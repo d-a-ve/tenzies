@@ -1,7 +1,3 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { GlobalContext } from "../Context";
-import HallOfFame from "./HallOfFame";
 import ModalFooter from "./ModalFooter";
 import { HighScoreModalType } from "../types";
 

@@ -70,6 +70,7 @@ h2 {
 		opacity: 0;
 	}
 }
+
 .home-main a:hover {
 	color: var(--blue);
 	transition: 300ms color ease-in;
@@ -381,12 +382,12 @@ td {
 }
 
 #error-page h1 {
-	color: var(--white)
+	color: var(--white);
 }
 
 .error-desc {
 	text-align: center;
-font-size: 2rem;
+	font-size: 2rem;
 }
 
 .error-desc p:nth-of-type(2) {
@@ -443,10 +444,10 @@ font-size: 2rem;
 	.video-demo {
 		height: 100%;
 	}
-	
+
 	.home-hero .start-btn {
-	margin-top: 0;
-}
+		margin-top: 0;
+	}
 
 	.title {
 		font-size: 3.5rem;

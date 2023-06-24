@@ -1,18 +1,14 @@
-import React from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../App";
+import { useState, useEffect } from "react";
+import useFirebase from "../hooks/useFirebase";
 import HallOfFameSingle from "./HallOfFameSingle";
-import { HOFType } from "../types";
-import { formatTimeToMinsSecs } from "../helpers";
 import Loader from "./Loader";
 
-export default function HallOfFame({
-	usersScores,
-	setUsersScores,
-}: HOFType) {
-	const [loading, setLoading] = React.useState(true);
+export default function HallOfFame() {
+	const [loading, setLoading] = useState(true);
+	const { getUsersScores } = useFirebase();
+const [usersScores, setUsersScores] = useState({}) as any
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const getHOF = async () => {
 			const scores = await getUsersScores()
 				.then((res) => res.sort((a, b) => a.gameTime - b.gameTime))
@@ -34,21 +30,6 @@ export default function HallOfFame({
 		};
 		getHOF();
 	}, []);
-
-	async function getUsersScores() {
-		const res: any[] = [];
-		const querySnapshot = await getDocs(collection(db, "users"));
-		querySnapshot.forEach((doc) => {
-			const { name, uid, numOfRolls, gameTime } = doc.data();
-			res.push({
-				name: name,
-				uid: uid,
-				numOfRolls: numOfRolls,
-				gameTime: formatTimeToMinsSecs(gameTime),
-			});
-		});
-		return res;
-	}
 
 	return (
 		<div className="HOF">

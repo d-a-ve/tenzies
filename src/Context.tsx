@@ -1,12 +1,11 @@
-import React, { ReactNode } from "react";
+import { ReactNode, useState, createContext } from "react";
 
-export const GlobalContext = React.createContext({});
+export const GlobalContext = createContext({});
 
 export default function Context({ children }: { children: ReactNode }) {
-	const [isGameOver, setIsGameOver] = React.useState(false);
-	const [usersScores, setUsersScores] = React.useState<any[]>();
-	const [minutes, setMinutes] = React.useState(0);
-	const [seconds, setSeconds] = React.useState(0);
+	const [isGameOver, setIsGameOver] = useState(false);
+	const [rolls, setRolls] = useState(0);
+
 
 
 	return (
@@ -14,12 +13,7 @@ export default function Context({ children }: { children: ReactNode }) {
 			value={{
 				isGameOver,
 				setIsGameOver,
-				usersScores,
-				setUsersScores,
-				minutes,
-				setMinutes,
-				seconds,
-				setSeconds
+				rolls, setRolls
 			}}>
 			{children}
 		</GlobalContext.Provider>

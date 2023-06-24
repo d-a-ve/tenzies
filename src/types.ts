@@ -11,11 +11,6 @@ export type UserStatsType = {
 	gameTime: number;
 }[];
 
-export type HOFType = {
-	setUsersScores: React.Dispatch<React.SetStateAction<any[] | undefined>>;
-	usersScores: any[] | undefined
-};
-
 export type DiePropsType = {
 	value: number;
 	isHeld: boolean;
