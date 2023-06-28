@@ -1,14 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { ModalFooterType } from "../types";
 
-export default function ModalFooter({signIn, playGame, showJoin, btnLoading}: {signIn: () => void, playGame: () => void, showJoin: boolean, btnLoading?: boolean}) {
-
-  return (
+export default function ModalFooter({
+	signIn,
+	playGame,
+	showJoinBtn,
+	btnLoading,
+}: ModalFooterType) {
+	return (
 		<div>
 			<div className="btn-container">
-				{showJoin && <button className={`btn hof-btn ${btnLoading ? "loading" : ""}`} onClick={signIn}>
-					Join Hall of Fame
-				</button>}
+				{showJoinBtn && (
+					<button
+						className={`btn hof-btn ${btnLoading ? "loading" : ""}`}
+						onClick={signIn}>
+						Join Hall of Fame
+					</button>
+				)}
 				<button className="btn play-btn" onClick={playGame}>
 					Play Again
 				</button>

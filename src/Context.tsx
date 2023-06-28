@@ -3,17 +3,22 @@ import { ReactNode, useState, createContext } from "react";
 export const GlobalContext = createContext({});
 
 export default function Context({ children }: { children: ReactNode }) {
+	const [tenziesStats, setTenziesStats] = useState({
+		minutes: 0,
+		seconds: 0,
+	});
+	const [rolls, setRolls] = useState(0)
 	const [isGameOver, setIsGameOver] = useState(false);
-	const [rolls, setRolls] = useState(0);
-
-
 
 	return (
 		<GlobalContext.Provider
 			value={{
 				isGameOver,
 				setIsGameOver,
-				rolls, setRolls
+				tenziesStats,
+				setTenziesStats,
+				rolls,
+				setRolls
 			}}>
 			{children}
 		</GlobalContext.Provider>

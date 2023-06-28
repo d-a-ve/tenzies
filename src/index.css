@@ -168,6 +168,7 @@ h2 {
 .back-btn-container:hover p {
 	transform: translateX(3px);
 }
+
 .title {
 	margin-bottom: 1.2rem;
 }
@@ -285,6 +286,7 @@ h2 {
 .modal-details-container p {
 	margin-top: 2rem;
 }
+
 .btn-container {
 	display: flex;
 	margin-top: 3.2rem;
@@ -394,42 +396,6 @@ td {
 	margin-top: 1.6rem;
 }
 
-@media all and (max-width: 460px) {
-	.game-main {
-		padding-inline: 1.2rem;
-	}
-	.back-btn-container {
-		top: 6rem;
-	}
-
-	.btn {
-		padding: 1.3rem 3rem;
-		margin-top: 3rem;
-	}
-
-	.hof-btn,
-	.play-btn {
-		margin-top: 0;
-	}
-
-	.home-hero > p,
-	.how-to-play-steps ol,
-	.HOF-row,
-	.footer,
-	.btn {
-		font-size: 1.8rem;
-	}
-
-	.modal-stats h4 {
-		font-size: 2.4rem;
-		text-align: left;
-	}
-
-	.modal-stats p {
-		font-size: 2rem;
-	}
-}
-
 @media all and (max-width: 550px) {
 	body {
 		padding: 1rem;
@@ -477,6 +443,42 @@ td {
 	}
 }
 
+@media all and (max-width: 460px) {
+	.game-main {
+		padding-inline: 1.2rem;
+	}
+	.back-btn-container {
+		top: 6rem;
+	}
+
+	.btn {
+		padding: 1.3rem 3rem;
+		margin-top: 3rem;
+	}
+
+	.hof-btn,
+	.play-btn {
+		margin-top: 0;
+	}
+
+	.home-hero > p,
+	.how-to-play-steps ol,
+	.HOF-row,
+	.footer,
+	.btn {
+		font-size: 1.8rem;
+	}
+
+	.modal-stats h4 {
+		font-size: 2.4rem;
+		text-align: left;
+	}
+
+	.modal-stats p {
+		font-size: 2rem;
+	}
+}
+
 @media all and (max-width: 340px) {
 	.die-container {
 		grid-template: auto auto / repeat(3, 4rem);
@@ -489,5 +491,9 @@ td {
 	.back-btn-container {
 		top: 3rem;
 		left: 4rem;
+	}
+
+	.HOF {
+		margin-right: -3rem;
 	}
 }

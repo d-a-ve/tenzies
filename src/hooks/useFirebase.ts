@@ -9,10 +9,9 @@ import {
 	collection,
 	getDocs,
 } from "@firebase/firestore";
-import { UserType } from "../types";
-import { formatTime, formatTimeToMinsSecs } from "../helpers";
+import { UserStatsType, UserType } from "../types";
+import { formatTime } from "../helpers";
 import { GlobalContext } from "../Context";
-import useGame from "./useGame";
 
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
@@ -32,24 +31,40 @@ const provider = new GoogleAuthProvider();
 export default function useFirebase() {
 	const [user, setUser] = useState<UserType>();
 	const [btnLoading, setBtnLoading] = useState(false);
-	const { minutes, seconds } = useGame();
-	const { setIsGameOver, rolls }: any = useContext(GlobalContext);
+	const { setIsGameOver, tenziesStats, isGameOver, rolls }: any =
+		useContext(GlobalContext);
 
-	// useEffect(() => {
-	// 	createUpdateUserDoc();
-	// }, [user]);
+	useEffect(() => {
+			async function createAndUpdateUserDoc() {
+				// safe guard, so we don't create or update the user doc if they have not played a game yet
+				if (rolls === 0) return;
 
-	// useEffect(() => {
-	// 	userSignedIn();
-	// }, []);
+				if (user && user.uid) {
+					const usersColRef = doc(db, "users", user.uid);
+
+					await setDoc(usersColRef, {
+						uid: user.uid,
+						email: user.email,
+						name: user.name,
+						gameTime: formatTime(tenziesStats.minutes, tenziesStats.seconds),
+						numOfRolls: rolls,
+						createdAt: serverTimestamp(),
+					});
+				}
+				setBtnLoading(false);
+			}
+		isGameOver && createAndUpdateUserDoc();
+	}, [user, tenziesStats, isGameOver]);
+
+	useEffect(() => {
+		userSignedIn();
+	}, []);
 
 	function userSignedIn() {
-    console.log("user signin func ran")
-    console.log(auth.currentUser)
 		// if the user is already signed in, do not sign in again and add the user to state
 		if (auth.currentUser) {
 			const user = auth.currentUser;
-			console.log("already signed in");
+
 			setUser({
 				email: user?.email,
 				name: user?.displayName,
@@ -62,7 +77,8 @@ export default function useFirebase() {
 
 	function firebaseSignIn() {
 		setBtnLoading(true);
-		// if (userSignedIn()) return;
+		setIsGameOver(true);
+		if (userSignedIn()) return;
 
 		signInWithPopup(auth, provider)
 			.then((result) => {
@@ -76,7 +92,6 @@ export default function useFirebase() {
 					name: user?.displayName,
 					uid: user?.uid,
 				});
-				console.log("inside signin", user);
 			})
 			.catch((error) => {
 				// Handle Errors here.
@@ -86,49 +101,24 @@ export default function useFirebase() {
 				const email = error.customData.email;
 				// The AuthCredential type that was used.
 				const credential = GoogleAuthProvider.credentialFromError(error);
-				console.log(errorCode, errorMessage, email, credential);
 			});
-	}
-	console.log(rolls);
-
-	console.log("outside signin", user);
-	async function createUpdateUserDoc() {
-		// safe guard, so we don't create or update the user doc if they have not played a game yet
-		console.log("Start ran");
-		if (rolls === 0) return;
-
-		if (user && user.uid) {
-			const usersColRef = doc(db, "users", user.uid);
-
-			await setDoc(usersColRef, {
-				uid: user.uid,
-				email: user.email,
-				name: user.name,
-				gameTime: formatTime(minutes, seconds),
-				numOfRolls: rolls,
-				createdAt: serverTimestamp(),
-			});
-			console.log("end ran");
-
-			setIsGameOver(true);
-			setBtnLoading(false);
-		}
 	}
 
 	async function getUsersScores() {
-		const res: any[] = [];
+		const res = [] as UserStatsType;
 		const querySnapshot = await getDocs(collection(db, "users"));
 		querySnapshot.forEach((doc) => {
 			const { name, uid, numOfRolls, gameTime } = doc.data();
+
 			res.push({
 				name: name,
 				uid: uid,
 				numOfRolls: numOfRolls,
-				gameTime: formatTimeToMinsSecs(gameTime),
+				gameTime: gameTime,
 			});
 		});
 		return res;
 	}
 
-	return { firebaseSignIn, btnLoading, createUpdateUserDoc, getUsersScores };
+	return { firebaseSignIn, btnLoading, getUsersScores };
 }

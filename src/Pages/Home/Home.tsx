@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import HallOfFame from "../../components/HallOfFame";
 
 export default function Home() {
-
 	return (
 		<main>
 			<div className="home-main">
@@ -60,8 +59,7 @@ export default function Home() {
 				</section>
 
 				<section id="hallOfFame">
-					<HallOfFame
-					/>
+					<HallOfFame />
 				</section>
 				<footer className="footer">
 					<p>

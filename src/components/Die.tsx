@@ -1,4 +1,3 @@
-import React from "react";
 import { DiePropsType } from "../types";
 
 export default function Die({ id, value, isHeld, hold }: DiePropsType) {

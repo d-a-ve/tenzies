@@ -24,7 +24,7 @@ export default function HighScoreModal({
 					Add your name to the Hall of Fame by signing-in with your Google
 					Account
 				</p>
-				<ModalFooter btnLoading={btnLoading} showJoin={true} signIn={signIn} playGame={playGame} />
+				<ModalFooter btnLoading={btnLoading} showJoinBtn={true} signIn={signIn} playGame={playGame} />
 			</div>
 		</div>
 	);

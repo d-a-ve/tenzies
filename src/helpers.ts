@@ -7,18 +7,18 @@ export function formatNumCount(count: number) {
 	return count;
 }
 
-// change time from string in MM:SS to numbers
+// change time from MM:SS to numbers
 export function formatTime(mins: number, secs: number) {
 	return mins * 60 + secs;
 }
 
 export function formatTimeToMinsSecs(secs: number) {
-	let count = 0;
+	let mins = 0;
 	while (secs > 59) {
-		count += 1;
-		secs - 60;
+		mins += 1;
+		secs -= 60;
 	}
-	return `${formatNumCount(count)}:${formatNumCount(secs)}`;
+	return `${formatNumCount(mins)}:${formatNumCount(secs)}`;
 }
 
 export function genereateNewDie() {

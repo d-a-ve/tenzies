@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const styles = {
 	container: {
@@ -10,11 +9,11 @@ const styles = {
 		fontSize: "1.6rem",
 		paddingInline: "2rem",
 		textDecoration: "none",
-	}
+	},
 };
 
-export default function BackBtn({to}:{to:string}) {
-  return (
+export default function BackBtn({ to }: { to: string }) {
+	return (
 		<Link to={to} className="btn back-btn" style={styles.container}>
 			<svg
 				height="1.6rem"

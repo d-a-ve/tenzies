@@ -3,25 +3,23 @@ import Confetti from "react-confetti";
 import useWindowSize from "../../hooks/windowSize";
 import useGame from "../../hooks/useGame";
 import useFirebase from "../../hooks/useFirebase";
+import { GlobalContext } from "../../Context";
 
 import Die from "../../components/Die";
 import HighScoreModal from "../../components/HighScoreModal";
 import HallOfFame from "../../components/HallOfFame";
-import { GlobalContext } from "../../Context";
 import BackBtn from "../../components/BackBtn";
 import ModalFooter from "../../components/ModalFooter";
 
 export default function Game() {
-	const { isGameOver, rolls }: any = useContext(GlobalContext);
+	const { isGameOver, rolls }: any =
+		useContext(GlobalContext);
 	const { width, height } = useWindowSize();
 	const {
 		tenzies,
-		seconds,
-		setTenzies,
-		setSeconds,
 		dice,
-		holdDice,
 		gameCounter,
+		holdDice,
 		newGame,
 		rollDice,
 		playGameAgain,
@@ -38,29 +36,7 @@ export default function Game() {
 				hold={holdDice}
 			/>
 		);
-	});
-
-	useEffect(() => {
-		const allIsHeld = dice.every((die) => die.isHeld);
-		const firstValue = dice[0].value;
-		const allSameValue = dice.every((die) => die.value === firstValue);
-
-		if (allIsHeld && allSameValue) {
-			setTenzies(true);
-		}
-	}, [dice]);
-
-	useEffect(() => {
-		const interv = setInterval(() => {
-			if (!tenzies) {
-				setSeconds((prev) => prev + 1);
-			}
-		}, 1000);
-
-		return () => {
-			clearInterval(interv);
-		};
-	}, [seconds]);
+	})
 
 	return (
 		<div className="game-height">
@@ -96,7 +72,7 @@ export default function Game() {
 				<div className="modal">
 					<HallOfFame />
 					<ModalFooter
-						showJoin={false}
+						showJoinBtn={false}
 						signIn={firebaseSignIn}
 						playGame={playGameAgain}
 					/>
