@@ -1,11 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import HallOfFame from "../../components/HallOfFame";
-import { GlobalContext } from "../../Context";
 
 export default function Home() {
-	const { usersScores, setUsersScores }: any = React.useContext(GlobalContext);
-
 	return (
 		<main>
 			<div className="home-main">
@@ -63,10 +59,7 @@ export default function Home() {
 				</section>
 
 				<section id="hallOfFame">
-					<HallOfFame
-						usersScores={usersScores}
-						setUsersScores={setUsersScores}
-					/>
+					<HallOfFame />
 				</section>
 				<footer className="footer">
 					<p>

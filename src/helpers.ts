@@ -7,32 +7,32 @@ export function formatNumCount(count: number) {
 	return count;
 }
 
-// change time from string in MM:SS to numbers
+// change time from MM:SS to numbers
 export function formatTime(mins: number, secs: number) {
 	return mins * 60 + secs;
 }
 
-export function formatTimeToMinsSecs(secs:number) {
-	let count = 0;
-	while(secs > 59) {
-		count += 1
-		secs - 60
+export function formatTimeToMinsSecs(secs: number) {
+	let mins = 0;
+	while (secs > 59) {
+		mins += 1;
+		secs -= 60;
 	}
-	return `${formatNumCount(count)}:${formatNumCount(secs)}`
+	return `${formatNumCount(mins)}:${formatNumCount(secs)}`;
 }
 
 export function genereateNewDie() {
-		return {
-			value: Math.floor(Math.random() * 6) + 1,
-			isHeld: false,
-			id: nanoid(),
-		};
-	}
+	return {
+		value: Math.floor(Math.random() * 6) + 1,
+		isHeld: false,
+		id: nanoid(),
+	};
+}
 
 export function allNewDice() {
-		const dieValueArray = [];
-		for (let i = 0; i < 10; i++) {
-			dieValueArray.push(genereateNewDie());
-		}
-		return dieValueArray;
+	const dieValueArray = [];
+	for (let i = 0; i < 10; i++) {
+		dieValueArray.push(genereateNewDie());
 	}
+	return dieValueArray;
+}

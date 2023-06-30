@@ -11,11 +11,6 @@ export type UserStatsType = {
 	gameTime: number;
 }[];
 
-export type HOFType = {
-	setUsersScores: React.Dispatch<React.SetStateAction<any[] | undefined>>;
-	usersScores: any[] | undefined
-};
-
 export type DiePropsType = {
 	value: number;
 	isHeld: boolean;
@@ -23,11 +18,11 @@ export type DiePropsType = {
 	hold: (id: string) => void;
 };
 
-export type HOFSingleType = {
+export type HallOfFameSingleType = {
 	pos: number;
 	name: string;
 	timeSpent: string;
-	numberOfRolls: string;
+	numberOfRolls: number;
 };
 
 export type HighScoreModalType = {
@@ -37,3 +32,16 @@ export type HighScoreModalType = {
 	playGame: () => void;
 	btnLoading?: boolean
 }
+
+export type tenziesStatsType = {
+	minutes: number;
+	seconds: number;
+	rolls: number;
+};
+
+export type ModalFooterType = {
+	signIn: () => void;
+	playGame: () => void;
+	showJoinBtn: boolean;
+	btnLoading?: boolean;
+};

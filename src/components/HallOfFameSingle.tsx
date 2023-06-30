@@ -1,12 +1,11 @@
-import React from "react";
-import { HOFSingleType } from "../types";
+import { HallOfFameSingleType } from "../types";
 
 export default function HallOfFameSingle({
 	pos,
 	name,
 	timeSpent,
 	numberOfRolls,
-}: HOFSingleType) {
+}: HallOfFameSingleType) {
 	return (
 		<tr className="HOF-row">
 			<td>{pos}</td>

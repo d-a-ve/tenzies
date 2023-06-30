@@ -1,7 +1,3 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { GlobalContext } from "../Context";
-import HallOfFame from "./HallOfFame";
 import ModalFooter from "./ModalFooter";
 import { HighScoreModalType } from "../types";
 
@@ -28,7 +24,7 @@ export default function HighScoreModal({
 					Add your name to the Hall of Fame by signing-in with your Google
 					Account
 				</p>
-				<ModalFooter btnLoading={btnLoading} showJoin={true} signIn={signIn} playGame={playGame} />
+				<ModalFooter btnLoading={btnLoading} showJoinBtn={true} signIn={signIn} playGame={playGame} />
 			</div>
 		</div>
 	);

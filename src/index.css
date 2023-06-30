@@ -70,6 +70,7 @@ h2 {
 		opacity: 0;
 	}
 }
+
 .home-main a:hover {
 	color: var(--blue);
 	transition: 300ms color ease-in;
@@ -167,6 +168,7 @@ h2 {
 .back-btn-container:hover p {
 	transform: translateX(3px);
 }
+
 .title {
 	margin-bottom: 1.2rem;
 }
@@ -284,6 +286,7 @@ h2 {
 .modal-details-container p {
 	margin-top: 2rem;
 }
+
 .btn-container {
 	display: flex;
 	margin-top: 3.2rem;
@@ -381,16 +384,63 @@ td {
 }
 
 #error-page h1 {
-	color: var(--white)
+	color: var(--white);
 }
 
 .error-desc {
 	text-align: center;
-font-size: 2rem;
+	font-size: 2rem;
 }
 
 .error-desc p:nth-of-type(2) {
 	margin-top: 1.6rem;
+}
+
+@media all and (max-width: 550px) {
+	body {
+		padding: 1rem;
+	}
+	.game-height {
+		padding: 2rem 1rem;
+	}
+	.back-btn-container {
+		left: 6rem;
+	}
+
+	.video-demo {
+		height: 100%;
+	}
+
+	.home-hero .start-btn {
+		margin-top: 0;
+	}
+
+	.title {
+		font-size: 3.5rem;
+		line-height: 5rem;
+	}
+
+	.instruction {
+		line-height: 2.2rem;
+		font-size: 1.8rem;
+	}
+
+	.HOF-title {
+		font-size: 3.2rem;
+	}
+	.game-result-container {
+		-ms-flex-direction: column;
+		flex-direction: column;
+		gap: 0;
+		font-size: 2rem;
+	}
+	.die-face {
+		padding: 1rem 1.5rem;
+	}
+
+	.die-value {
+		font-size: 2rem;
+	}
 }
 
 @media all and (max-width: 460px) {
@@ -429,53 +479,6 @@ font-size: 2rem;
 	}
 }
 
-@media all and (max-width: 550px) {
-	body {
-		padding: 1rem;
-	}
-	.game-height {
-		padding: 2rem 1rem;
-	}
-	.back-btn-container {
-		left: 6rem;
-	}
-
-	.video-demo {
-		height: 100%;
-	}
-	
-	.home-hero .start-btn {
-	margin-top: 0;
-}
-
-	.title {
-		font-size: 3.5rem;
-		line-height: 5rem;
-	}
-
-	.instruction {
-		line-height: 2.2rem;
-		font-size: 1.8rem;
-	}
-
-	.HOF-title {
-		font-size: 3.2rem;
-	}
-	.game-result-container {
-		-ms-flex-direction: column;
-		flex-direction: column;
-		gap: 0;
-		font-size: 2rem;
-	}
-	.die-face {
-		padding: 1rem 1.5rem;
-	}
-
-	.die-value {
-		font-size: 2rem;
-	}
-}
-
 @media all and (max-width: 340px) {
 	.die-container {
 		grid-template: auto auto / repeat(3, 4rem);
@@ -488,5 +491,9 @@ font-size: 2rem;
 	.back-btn-container {
 		top: 3rem;
 		left: 4rem;
+	}
+
+	.HOF {
+		margin-right: -3rem;
 	}
 }

@@ -1,19 +1,16 @@
-import React from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../App";
-import HallOfFameSingle from "./HallOfFameSingle";
-import { HOFType } from "../types";
+import { useState, useEffect } from "react";
+import useFirebase from "../hooks/useFirebase";
 import { formatTimeToMinsSecs } from "../helpers";
+import HallOfFameSingle from "./HallOfFameSingle";
 import Loader from "./Loader";
 
-export default function HallOfFame({
-	usersScores,
-	setUsersScores,
-}: HOFType) {
-	const [loading, setLoading] = React.useState(true);
+export default function HallOfFame() {
+	const [loading, setLoading] = useState(true);
+	const { getUsersScores } = useFirebase();
+	const [usersScores, setUsersScores] = useState({}) as any;
 
-	React.useEffect(() => {
-		const getHOF = async () => {
+	useEffect(() => {
+		const fetchHallOfFame = async () => {
 			const scores = await getUsersScores()
 				.then((res) => res.sort((a, b) => a.gameTime - b.gameTime))
 				.then((scores) =>
@@ -23,7 +20,7 @@ export default function HallOfFame({
 								key={user.uid}
 								pos={i + 1}
 								name={user.name}
-								timeSpent={user.gameTime}
+								timeSpent={formatTimeToMinsSecs(user.gameTime)}
 								numberOfRolls={user.numOfRolls}
 							/>
 						);
@@ -32,23 +29,8 @@ export default function HallOfFame({
 			setLoading(false);
 			setUsersScores(scores);
 		};
-		getHOF();
+		fetchHallOfFame();
 	}, []);
-
-	async function getUsersScores() {
-		const res: any[] = [];
-		const querySnapshot = await getDocs(collection(db, "users"));
-		querySnapshot.forEach((doc) => {
-			const { name, uid, numOfRolls, gameTime } = doc.data();
-			res.push({
-				name: name,
-				uid: uid,
-				numOfRolls: numOfRolls,
-				gameTime: formatTimeToMinsSecs(gameTime),
-			});
-		});
-		return res;
-	}
 
 	return (
 		<div className="HOF">
@@ -56,17 +38,19 @@ export default function HallOfFame({
 			{loading ? (
 				<Loader />
 			) : (
-				<table className="HOF-table">
-					<thead>
-						<tr className="HOF-row">
-							<th className="col-1">POS</th>
-							<th className="col-2">NAME</th>
-							<th className="col-3">TIME</th>
-							<th className="col-4">ROLLS</th>
-						</tr>
-					</thead>
-					<tbody className="HOF-table-body">{usersScores}</tbody>
-				</table>
+				<div className="HOF-table-container">
+					<table className="HOF-table">
+						<thead>
+							<tr className="HOF-row">
+								<th className="col-1">POS</th>
+								<th className="col-2">NAME</th>
+								<th className="col-3">TIME</th>
+								<th className="col-4">ROLLS</th>
+							</tr>
+						</thead>
+						<tbody className="HOF-table-body">{usersScores}</tbody>
+					</table>
+				</div>
 			)}
 		</div>
 	);
